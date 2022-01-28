@@ -32,8 +32,7 @@
     "eslint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "prepublishOnly": "npm run build",
     "build:js": "babel lib --out-dir lib --extensions \".js,.jsx\" && babel lib/es --out-dir lib/es --extensions \".js,.jsx\"",
-    "build:replace": "replace-in-file --configFile=replace.config.js",
-    "postinstall": "npm run compile"
+    "build:replace": "replace-in-file --configFile=replace.config.js"
   },
   "dependencies": {
     "@restart/hooks": "^0.3.1",

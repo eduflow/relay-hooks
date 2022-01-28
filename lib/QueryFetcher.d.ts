@@ -1,0 +1,35 @@
+import { Disposable, CacheConfig, IEnvironment, Snapshot, OperationType, OperationDescriptor, GraphQLTaggedNode, Variables } from 'relay-runtime';
+import { Fetcher } from './FetchResolver';
+import { FetchPolicy, RenderProps, QueryOptions, Options } from './RelayHooksTypes';
+export declare function getOrCreateQueryFetcher<TOperationType extends OperationType>(useLazy: boolean, gqlQuery: GraphQLTaggedNode, variables: TOperationType['variables'], networkCacheConfig: CacheConfig): QueryFetcher<TOperationType>;
+export declare class QueryFetcher<TOperationType extends OperationType = OperationType> {
+    environment: IEnvironment;
+    query: OperationDescriptor;
+    fetcher: Fetcher;
+    rootSubscription: Disposable;
+    snapshot: Snapshot;
+    fetchPolicy: FetchPolicy;
+    fetchKey: string | number;
+    variables: Variables;
+    cacheConfig: Variables;
+    gqlQuery: GraphQLTaggedNode;
+    options: QueryOptions;
+    forceUpdate: () => void;
+    result: RenderProps<TOperationType>;
+    skip?: boolean;
+    constructor();
+    setQuery(gqlQuery: GraphQLTaggedNode, variables: TOperationType['variables'], networkCacheConfig: CacheConfig, query: OperationDescriptor): void;
+    getForceUpdate(): () => void;
+    setForceUpdate(forceUpdate: any): void;
+    dispose(): void;
+    disposeSnapshot(): void;
+    retry: (cacheConfigOverride?: CacheConfig, options?: Options) => void;
+    fetch(query: OperationDescriptor, fetchPolicy: FetchPolicy, options: Options, skip?: boolean): void;
+    getQuery(gqlQuery: any, variables: any, networkCacheConfig: any): OperationDescriptor | null;
+    resolveEnvironment(environment: IEnvironment): void;
+    resolve(environment: IEnvironment, gqlQuery: GraphQLTaggedNode, variables: Variables, options: QueryOptions): void;
+    checkAndSuspense(suspense?: boolean, useLazy?: boolean): Promise<any> | Error | null;
+    getData(): RenderProps<TOperationType>;
+    resolveResult(): void;
+    subscribe(snapshot: any): void;
+}
