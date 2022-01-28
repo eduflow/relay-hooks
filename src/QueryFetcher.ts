@@ -13,7 +13,7 @@ import { Fetcher, fetchResolver } from './FetchResolver';
 import { FetchPolicy, RenderProps, QueryOptions, Options } from './RelayHooksTypes';
 import { createOperation } from './Utils';
 
-const defaultPolicy = 'store-or-network';
+const defaultPolicy = 'network-only';
 
 const cache: Map<string, QueryFetcher<any>> = new Map();
 
